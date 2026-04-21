@@ -3,6 +3,7 @@
 namespace App\Restify;
 
 use App\Models\Channel;
+use App\Restify\Actions\ProbeChannelAction;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 
 class ChannelRepository extends Repository
@@ -12,6 +13,13 @@ class ChannelRepository extends Repository
     public static array $search = ['name', 'display_name', 'phone_number'];
 
     public static array $match = ['driver' => 'string', 'status' => 'string'];
+
+    public function actions(RestifyRequest $request): array
+    {
+        return [
+            ProbeChannelAction::make(),
+        ];
+    }
 
     public function fields(RestifyRequest $request): array
     {
