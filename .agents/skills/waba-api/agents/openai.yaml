@@ -1,0 +1,6 @@
+interface:
+  display_name: "Waba Api"
+  short_description: "Repo-specific patterns and workflows for waba-api"
+  default_prompt: "Use the waba-api repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
