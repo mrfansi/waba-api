@@ -2,6 +2,7 @@
 
 use App\Waba\Drivers\QiscusDriver;
 use App\Waba\Dto\ChannelCredentials;
+use App\Waba\Dto\MessagePayloads\TextPayload;
 use App\Waba\Dto\OutboundMessage;
 use App\Waba\Exceptions\DriverException;
 use Illuminate\Support\Facades\Http;
@@ -43,5 +44,5 @@ it('probe returns false on http failure', function () {
 
 it('throws not-implemented for unimplemented methods', function () {
     $driver = (new QiscusDriver)->bind($this->creds);
-    $driver->send(new OutboundMessage('+62', 'text'));
+    $driver->send(new OutboundMessage('+62', 'text', new TextPayload('hi')));
 })->throws(DriverException::class, 'not implemented');
