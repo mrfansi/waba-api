@@ -7,6 +7,7 @@ use App\Waba\Dto\ChannelCredentials;
 use App\Waba\Dto\MediaReference;
 use App\Waba\Dto\MediaUpload;
 use App\Waba\Dto\NormalizedInboundEvent;
+use App\Waba\Dto\NormalizedStatusEvent;
 use App\Waba\Dto\OutboundMessage;
 use App\Waba\Dto\SendResult;
 use App\Waba\Dto\TemplateDefinition;
@@ -62,6 +63,11 @@ class QiscusDriver implements MessageProvider
     }
 
     public function normalizeInbound(array $rawPayload): NormalizedInboundEvent
+    {
+        throw DriverException::notImplemented(__METHOD__);
+    }
+
+    public function normalizeStatus(array $rawPayload): ?NormalizedStatusEvent
     {
         throw DriverException::notImplemented(__METHOD__);
     }

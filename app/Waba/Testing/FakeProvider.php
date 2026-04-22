@@ -7,6 +7,7 @@ use App\Waba\Dto\ChannelCredentials;
 use App\Waba\Dto\MediaReference;
 use App\Waba\Dto\MediaUpload;
 use App\Waba\Dto\NormalizedInboundEvent;
+use App\Waba\Dto\NormalizedStatusEvent;
 use App\Waba\Dto\OutboundMessage;
 use App\Waba\Dto\SendResult;
 use App\Waba\Dto\TemplateDefinition;
@@ -18,6 +19,8 @@ class FakeProvider implements MessageProvider
     public array $calls = [];
 
     public bool $probeResult = true;
+
+    public ?NormalizedStatusEvent $normalizedStatusResult = null;
 
     public function name(): string
     {
@@ -57,6 +60,13 @@ class FakeProvider implements MessageProvider
         $this->record(__FUNCTION__, [$rawPayload]);
 
         return new NormalizedInboundEvent('message', $rawPayload);
+    }
+
+    public function normalizeStatus(array $rawPayload): ?NormalizedStatusEvent
+    {
+        $this->record(__FUNCTION__, [$rawPayload]);
+
+        return $this->normalizedStatusResult;
     }
 
     public function listTemplates(): array
