@@ -1,0 +1,558 @@
+# Instincts generated from https://github.com/mrfansi/waba-api
+# Generated: 2026-04-22T02:59:10.089Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: waba-api-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: feat, test
+
+## Evidence
+
+- 19 commits analyzed
+- Detected conventional commit pattern
+- Examples: feat(waba): add core config scaffolding, test(waba): add driver isolation arch tests
+
+---
+id: waba-api-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Commit Length
+
+## Action
+
+Keep commit messages concise (~45 characters)
+
+## Evidence
+
+- Average commit message length: 45 chars
+- Based on 19 commits
+
+---
+id: waba-api-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Naming Files
+
+## Action
+
+Use PascalCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: PascalCase
+
+---
+id: waba-api-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: waba-api-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: waba-api-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: waba-api-test-naming
+trigger: "when creating a test file"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Test Naming
+
+## Action
+
+Name test files using the pattern: *.test.ts
+
+## Evidence
+
+- File pattern: *.test.ts
+- Consistent across test files
+
+---
+id: waba-api-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~30x per month
+- Files: **/*.test.*, **/api/**
+
+---
+id: waba-api-workflow-add-database-table-model-factory
+trigger: "when doing add database table model factory"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Workflow Add Database Table Model Factory
+
+## Action
+
+Follow the add-database-table-model-factory workflow:
+1. Create a migration file in database/migrations/
+2. Create a model in app/Models/
+3. Create a factory in database/factories/
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: database/migrations/*_create_*_table.php, app/Models/*.php, database/factories/*Factory.php
+
+---
+id: waba-api-workflow-add-restify-repository-with-tests
+trigger: "when doing add restify repository with tests"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Workflow Add Restify Repository With Tests
+
+## Action
+
+Follow the add-restify-repository-with-tests workflow:
+1. Create a repository in app/Restify/
+2. Add related policies or update existing ones in app/Policies/
+3. Write feature tests in tests/Feature/Restify/
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: app/Restify/*.php, app/Policies/*.php, tests/Feature/Restify/*Test.php
+
+---
+id: waba-api-workflow-add-middleware-and-register
+trigger: "when doing add middleware and register"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Workflow Add Middleware And Register
+
+## Action
+
+Follow the add-middleware-and-register workflow:
+1. Create middleware in app/Http/Middleware/
+2. Register middleware in bootstrap/app.php
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: app/Http/Middleware/*.php, bootstrap/app.php
+
+---
+id: waba-api-workflow-add-feature-with-corresponding-tests
+trigger: "when doing add feature with corresponding tests"
+confidence: 0.7
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/mrfansi/waba-api
+---
+
+# Waba Api Workflow Add Feature With Corresponding Tests
+
+## Action
+
+Follow the add-feature-with-corresponding-tests workflow:
+1. Implement feature/class in app/ or app/Waba/
+2. Write tests in tests/Unit/ or tests/Feature/
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~4x per month
+- Files: app/**/*.php, tests/Unit/**/*.php, tests/Feature/**/*.php
+
+---
+id: waba-api-instinct-file-naming
+trigger: "When creating a new file"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct File Naming
+
+## Action
+
+Name the file using PascalCase (e.g., MyClass.ts)
+
+## Evidence
+
+- Pattern in namingConventions.files
+- Observed in app/Models/Channel.php
+
+---
+id: waba-api-instinct-function-naming
+trigger: "When writing a new function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Function Naming
+
+## Action
+
+Name the function using camelCase
+
+## Evidence
+
+- Pattern in namingConventions.functions
+
+---
+id: waba-api-instinct-class-naming
+trigger: "When defining a new class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Class Naming
+
+## Action
+
+Name the class using PascalCase
+
+## Evidence
+
+- Pattern in namingConventions.classes
+
+---
+id: waba-api-instinct-constant-naming
+trigger: "When declaring a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Constant Naming
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE
+
+## Evidence
+
+- Pattern in namingConventions.constants
+
+---
+id: waba-api-instinct-import-style
+trigger: "When importing modules"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Import Style
+
+## Action
+
+Use relative import paths
+
+## Evidence
+
+- Pattern in importStyle: relative
+
+---
+id: waba-api-instinct-export-style
+trigger: "When exporting modules"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Export Style
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in exportStyle: named
+
+---
+id: waba-api-instinct-test-file-pattern
+trigger: "When creating a test file"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Test File Pattern
+
+## Action
+
+Name the file with a .test.ts suffix
+
+## Evidence
+
+- Pattern in testing.filePattern: *.test.ts
+
+---
+id: waba-api-instinct-test-location
+trigger: "When adding tests"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Test Location
+
+## Action
+
+Place test files in the tests/ directory, separate from source code
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation: separate
+- Examples in tests/Unit/, tests/Feature/
+
+---
+id: waba-api-instinct-unit-test-type
+trigger: "When writing tests for new features or classes"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Unit Test Type
+
+## Action
+
+Write unit tests in tests/Unit/ or tests/Feature/
+
+## Evidence
+
+- Pattern in testing.testTypes: unit
+- Examples in workflow add-feature-with-corresponding-tests
+
+---
+id: waba-api-instinct-git-commit-format
+trigger: "When making a commit"
+confidence: 0.95
+domain: git
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Git Commit Format
+
+## Action
+
+Use conventional commit format: <type>(<scope>): <description> (e.g., feat(waba): add core config scaffolding)
+
+## Evidence
+
+- Pattern in commits.type: conventional
+- Examples: feat(waba): add channels table, model, factory
+
+---
+id: waba-api-instinct-git-commit-length
+trigger: "When writing a commit message"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Git Commit Length
+
+## Action
+
+Keep the commit message concise, around 45 characters on average
+
+## Evidence
+
+- Pattern in commits.averageLength: 45
+
+---
+id: waba-api-instinct-add-database-table-model-factory
+trigger: "When introducing a new entity/table to the database"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Add Database Table Model Factory
+
+## Action
+
+Create a migration in database/migrations/, a model in app/Models/, and a factory in database/factories/
+
+## Evidence
+
+- Workflow: add-database-table-model-factory
+- Files: database/migrations/*_create_*_table.php, app/Models/*.php, database/factories/*Factory.php
+
+---
+id: waba-api-instinct-add-restify-repository-with-tests
+trigger: "When exposing CRUD operations for a model via Restify API"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Add Restify Repository With Tests
+
+## Action
+
+Create a repository in app/Restify/, update policies in app/Policies/, and write feature tests in tests/Feature/Restify/
+
+## Evidence
+
+- Workflow: add-restify-repository-with-tests
+- Files: app/Restify/*.php, app/Policies/*.php, tests/Feature/Restify/*Test.php
+
+---
+id: waba-api-instinct-add-middleware-and-register
+trigger: "When introducing a new middleware for handling requests"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Add Middleware And Register
+
+## Action
+
+Create middleware in app/Http/Middleware/ and register it in bootstrap/app.php
+
+## Evidence
+
+- Workflow: add-middleware-and-register
+- Files: app/Http/Middleware/*.php, bootstrap/app.php
+
+---
+id: waba-api-instinct-add-feature-with-corresponding-tests
+trigger: "When adding a new class or feature with test coverage"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: mrfansi/waba-api
+---
+
+# Waba Api Instinct Add Feature With Corresponding Tests
+
+## Action
+
+Implement the feature/class in app/ or app/Waba/ and write tests in tests/Unit/ or tests/Feature/
+
+## Evidence
+
+- Workflow: add-feature-with-corresponding-tests
+- Files: app/**/*.php, tests/Unit/**/*.php, tests/Feature/**/*.php
+
