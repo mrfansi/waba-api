@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | grep -E 'Dto/(ChannelCredentials|OutboundMessage|SendResult|NormalizedInboundEvent|MediaReference|MediaUpload|TemplateDefinition|TemplateSyncResult).php$' && exit 0 || echo '{}' | jq '{continue: true}'",
+            "if": "Write(app/Waba/Dto/*.php)"
+          }
+        ]
+      }
+    ]
+  }
+}
