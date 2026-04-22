@@ -6,6 +6,7 @@ use App\Waba\Dto\ChannelCredentials;
 use App\Waba\Dto\MediaReference;
 use App\Waba\Dto\MediaUpload;
 use App\Waba\Dto\NormalizedInboundEvent;
+use App\Waba\Dto\NormalizedStatusEvent;
 use App\Waba\Dto\OutboundMessage;
 use App\Waba\Dto\SendResult;
 use App\Waba\Dto\TemplateDefinition;
@@ -28,6 +29,9 @@ interface MessageProvider
 
     /** @param array<string,mixed> $rawPayload */
     public function normalizeInbound(array $rawPayload): NormalizedInboundEvent;
+
+    /** @param array<string,mixed> $rawPayload */
+    public function normalizeStatus(array $rawPayload): ?NormalizedStatusEvent;
 
     // P4
     /** @return array<int,TemplateDefinition> */

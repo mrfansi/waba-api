@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AssertAbility;
 use App\Http\Middleware\AssignRequestId;
 use App\Http\Middleware\AuthenticateChannelApiKey;
 use App\Waba\Exceptions\WabaException;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->append(AssignRequestId::class);
         $middleware->alias([
             'channel.apikey' => AuthenticateChannelApiKey::class,
+            'assert.ability' => AssertAbility::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

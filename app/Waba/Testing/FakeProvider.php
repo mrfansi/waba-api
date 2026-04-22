@@ -7,10 +7,12 @@ use App\Waba\Dto\ChannelCredentials;
 use App\Waba\Dto\MediaReference;
 use App\Waba\Dto\MediaUpload;
 use App\Waba\Dto\NormalizedInboundEvent;
+use App\Waba\Dto\NormalizedStatusEvent;
 use App\Waba\Dto\OutboundMessage;
 use App\Waba\Dto\SendResult;
 use App\Waba\Dto\TemplateDefinition;
 use App\Waba\Dto\TemplateSyncResult;
+use PHPUnit\Framework\Assert;
 
 class FakeProvider implements MessageProvider
 {
@@ -18,6 +20,10 @@ class FakeProvider implements MessageProvider
     public array $calls = [];
 
     public bool $probeResult = true;
+
+    public ?NormalizedStatusEvent $normalizedStatusResult = null;
+
+    public ?\Throwable $throwOnSend = null;
 
     public function name(): string
     {
@@ -42,7 +48,17 @@ class FakeProvider implements MessageProvider
     {
         $this->record(__FUNCTION__, [$message]);
 
-        return new SendResult('fake-id', 'queued');
+        if ($this->throwOnSend !== null) {
+            throw $this->throwOnSend;
+        }
+
+        return new SendResult('fake-id', 'accepted', sentAt: now());
+    }
+
+    /** @return array{request:array<string,mixed>,response:array<string,mixed>} */
+    public function lastTransaction(): array
+    {
+        return ['request' => [], 'response' => []];
     }
 
     public function verifyWebhookSignature(string $payload, array $headers): bool
@@ -57,6 +73,13 @@ class FakeProvider implements MessageProvider
         $this->record(__FUNCTION__, [$rawPayload]);
 
         return new NormalizedInboundEvent('message', $rawPayload);
+    }
+
+    public function normalizeStatus(array $rawPayload): ?NormalizedStatusEvent
+    {
+        $this->record(__FUNCTION__, [$rawPayload]);
+
+        return $this->normalizedStatusResult;
     }
 
     public function listTemplates(): array
@@ -79,6 +102,28 @@ class FakeProvider implements MessageProvider
     public function downloadMedia(string $providerMediaId): MediaReference
     {
         return new MediaReference($providerMediaId, 'application/octet-stream');
+    }
+
+    public function assertSent(?callable $matcher = null): void
+    {
+        $sends = array_filter($this->calls, fn ($c) => $c['method'] === 'send');
+        Assert::assertNotEmpty($sends, 'No messages sent');
+        if ($matcher !== null) {
+            $matched = array_filter($sends, fn ($c) => $matcher($c['args'][0]));
+            Assert::assertNotEmpty($matched, 'No sent message matched');
+        }
+    }
+
+    public function assertNothingSent(): void
+    {
+        $sends = array_filter($this->calls, fn ($c) => $c['method'] === 'send');
+        Assert::assertEmpty($sends);
+    }
+
+    public function assertSentCount(int $count): void
+    {
+        $sends = array_filter($this->calls, fn ($c) => $c['method'] === 'send');
+        Assert::assertCount($count, $sends);
     }
 
     /** @param array<int,mixed> $args */
