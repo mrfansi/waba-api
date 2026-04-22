@@ -39,6 +39,18 @@ return [
         'default_mode' => 'queue',
         'queue_connection' => env('WABA_QUEUE', 'default'),
         'queue_name' => 'waba-outbound',
+        'sync_timeout_seconds' => env('WABA_SYNC_TIMEOUT', 15),
+        'retry' => [
+            'attempts' => env('WABA_RETRY_ATTEMPTS', 3),
+            'backoff_seconds' => [30, 120, 600],
+        ],
+        'idempotency' => [
+            'ttl_hours' => 24,
+            'cache_store' => env('WABA_IDEMPOTENCY_STORE'),
+        ],
+        'retention' => [
+            'request_payload_days' => 30,
+        ],
     ],
 
     'rate_limit' => [
